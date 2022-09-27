@@ -7,3 +7,16 @@ export const reqGetCategory2 = (category1Id) => request({url:`/admin/product/get
 export const reqGetCategory3 = (category2Id) => request({url:`/admin/product/getCategory3/${category2Id}`,method:'GET'})
 //获取商品平台属性接口 地址/admin/product/attrInfoList/{category1Id}/{category2Id}/{category3Id}
 export const reqGetAttrList = (category1Id,category2Id,category3Id) => request({url:`/admin/product/attrInfoList/${category1Id}/${category2Id}/${category3Id}`,method:'GET'})
+//添加属性与属性值的接口 地址：/admin/product/saveAttrInfo
+export const reqPostAttrList = (data) => request({url:'/admin/product/saveAttrInfo',method:'POST',data})
+// { 需要添加的参数
+//     "attrName": "string",  属性名
+//     "attrValueList": [  属性名中属性值
+//       {
+//         "attrId": 0,    属性id
+//         "valueName": "string"
+//       }
+//     ],
+//     "categoryId": 0,   category3Id
+//     "categoryLevel": 0,
+//   }
