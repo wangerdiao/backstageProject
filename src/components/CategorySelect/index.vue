@@ -4,17 +4,17 @@
         <!-- inline代表行内表单，一行上可以放置多个表单元素  :model表示表单数据收集到cForm-->
         <el-form :inline="true"  class="demo-form-inline" :model="cForm">
         <el-form-item label="一级分类" >
-            <el-select placeholder="请选择" v-model="cForm.category1Id" @change="handler1">
+            <el-select placeholder="请选择" v-model="cForm.category1Id" @change="handler1" :disabled="show">
             <el-option :label="c1.name" :value="c1.id" v-for="c1 in list1" :key="c1.id"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="二级分类">
-            <el-select placeholder="请选择" v-model="cForm.category2Id"  @change="handler2">
+            <el-select placeholder="请选择" v-model="cForm.category2Id"  @change="handler2" :disabled="show">
             <el-option :label="c2.name" :value="c2.id" v-for="c2 in list2" :key="c2.id"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="三级分类">
-            <el-select placeholder="请选择" v-model="cForm.category3Id" @change="handler3">
+            <el-select placeholder="请选择" v-model="cForm.category3Id" @change="handler3" :disabled="show">
             <el-option :label="c3.name" :value="c3.id" v-for="c3 in list3" :key="c3.id"></el-option>
             </el-select>
         </el-form-item>
@@ -25,6 +25,7 @@
 <script>
 export default {
     name:'CategorySelect',
+    props:['show'],
     data() {
         return {
             list1:[], //一级分类的数据
