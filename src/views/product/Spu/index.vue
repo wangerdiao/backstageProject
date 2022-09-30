@@ -1,7 +1,7 @@
 <template>
   <div>
         <el-card style="margin:20px 0">
-            <CategorySelect   @getCategoryId="getCategoryId" :show="!show"></CategorySelect>
+            <CategorySelect   @getCategoryId="getCategoryId" :show="scene!=0"></CategorySelect>
         </el-card>
         <el-card>
             <!-- 底下会有三部分进行切换 -->
@@ -44,7 +44,6 @@ export default {
             category1Id: "",
             category2Id: "",
             category3Id: "",
-            show: true,
             page: 1,
             limit: 3,
             records: [],
@@ -91,6 +90,8 @@ export default {
         //添加Spu按钮
         addSpu() {
           this.scene = 1
+          //通知子组件发送请求 获取品牌和销售属性
+          this.$refs.spu.addSpuData(this.category3Id)
         },
         //修改Spu
         updateSpu(row){
@@ -99,8 +100,14 @@ export default {
           this.$refs.spu.initSpuData(row)
         },
         //Spu组件自定义事件，点击了取消按钮
-        changeScene(scene) {
-            this.scene=scene  //切换场景
+        changeScene({scene,flag}) {
+            this.scene=scene  //子组件通知父组件切换场景
+            //重新请求spu列表数据
+            if(flag=='修改') { //flag区分按钮是添加还是修改
+              this.getSpuList(this.page)
+            }else {
+              this.getSpuList()
+            }
         }
     },
     components: { SkuForm, SpuForm }
