@@ -19,3 +19,5 @@ export const reqAddOrUpdateSpu = (spuInfo) => {
         return request({url:'/admin/product/saveSpuInfo',method:'POST',data:spuInfo})
     }   
 }
+//删除spu的接口 地址DELETE /admin/product/deleteSpu/{spuId}
+export const reqDeleteSpu = (spuId) => request({url:`/admin/product/deleteSpu/${spuId}`,method:'DELETE'})

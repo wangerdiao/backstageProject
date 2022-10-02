@@ -15,10 +15,12 @@
                 <el-table-column label="操作">
                   <template slot-scope="{row,$index}">
                     <!-- 这里的按钮将来用hintButton替换 -->  
-                    <hint-button type="success" icon="el-icon-plus" size="mini" title="添加Sku"> </hint-button>
+                    <hint-button type="success" icon="el-icon-plus" size="mini" title="添加Sku" @click="addSku(row)"> </hint-button>
                     <hint-button type="warning" icon="el-icon-edit" size="mini" title="修改Spu" @click="updateSpu(row)"></hint-button>
                     <hint-button type="info" icon="el-icon-info" size="mini" title="查看当前Sku全部列表"></hint-button>
-                    <hint-button type="danger" icon="el-icon-delete" size="mini" title="删除Spu"></hint-button>
+                    <el-popconfirm title="这是一段内容确定删除吗？" @onConfirm="deleteSpu(row)">
+                      <hint-button type="danger" icon="el-icon-delete" size="mini" title="删除Spu" slot="reference"></hint-button>
+                    </el-popconfirm>
                   </template>
                 </el-table-column>
               </el-table>
@@ -29,7 +31,7 @@
               </el-pagination>
             </div>
             <SpuForm v-show="scene==1" @changeScene="changeScene" ref="spu"></SpuForm>
-            <SkuForm v-show="scene==2"></SkuForm>
+            <SkuForm v-show="scene==2" ref="sku"></SkuForm>
         </el-card>
   </div>
 </template>
@@ -108,6 +110,23 @@ export default {
             }else {
               this.getSpuList()
             }
+        },
+        //删除spu的按钮
+        async deleteSpu(row){
+          console.log(row)
+          let result =await this.$API.Spu.reqDeleteSpu(row.id)
+          if(result.code==200) {
+            this.$message({type:'success',message:'删除成功'})
+            this.getSpuList(this.records.length<=1?this.page-1:this.page)
+          }
+        },
+        //添加sku的按钮
+        addSku(row) {
+          //切换场景为2
+          this.scene = 2 
+          //获取子组件节点，让父组件调用子组件的方法,发送请求
+          this.$refs.sku.getData(this.category1Id,this.category2Id,row)
+
         }
     },
     components: { SkuForm, SpuForm }
