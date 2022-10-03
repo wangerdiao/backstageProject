@@ -214,7 +214,7 @@ export default {
         //通知父组件回到scene 0，让父组件区分修改和添加的保存按钮
         this.$emit('changeScene',{scene:0,flag:this.spu.id?'修改':'添加'})
       }
-      Object.assign(this._data,this.$options.data())
+      Object.assign(this._data,this.$options.data()) //清空数据
     },
     //点击添加属性按钮时的回调
     async addSpuData(category3Id) {
@@ -235,7 +235,7 @@ export default {
     cancel() {
       //通知父亲切换场景为0
       this.$emit('changeScene', {scene:0,flag:''})
-      //清除数据,this._data是组件实例当中的响应式数据，this.$options可以获取配置对象，data()函数就是上面的data函数
+      //清除数据,this._data是组件实例当中的响应式数据，this.$options可以获取配置对象，data()函数就是上面的data函数，都是空的
       Object.assign(this._data,this.$options.data())
     }
   },
