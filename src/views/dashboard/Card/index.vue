@@ -19,24 +19,33 @@
         <el-col :span="6">
             <el-card>
                 <Detail title="访问量" count="88460">
+                    <template slot="charts">
+                        <LineChart></LineChart>
+                    </template>
                     <template slot="footer">
                         <span>日访问量12234</span>
-                </template>
+                    </template>
                 </Detail>
             </el-card>
         </el-col>
         <el-col :span="6">
             <el-card>
                 <Detail title="支付笔数" count="88460">
+                    <template slot="charts">
+                        <BarCharts></BarCharts>
+                    </template>
                     <template slot="footer">
                         <span>转化率64%</span>
-                </template>
+                    </template>
                 </Detail>
             </el-card>
         </el-col>
         <el-col :span="6">
             <el-card>
                 <Detail title="运营活动效果" count="78%">
+                    <template slot="charts">
+                        <ProgressCharts></ProgressCharts>
+                    </template>
                     <template slot="footer">
                         <span><font size="1">周同比&nbsp;&nbsp;56.67% </font><svg t="1664960447428" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3806" width="16" height="16"><path d="M512 149.333333c200.298667 0 362.666667 162.368 362.666667 362.666667s-162.368 362.666667-362.666667 362.666667S149.333333 712.298667 149.333333 512 311.701333 149.333333 512 149.333333z m5.333333 232.085334L322.752 576l45.248 45.248 149.333333-149.333333 149.333334 149.333333L711.914667 576l-194.581334-194.581333z" p-id="3807" fill="#1afa29"></path></svg></span>
                         &nbsp;&nbsp;
@@ -51,8 +60,11 @@
 
 <script>
 import Detail from './Detail/index.vue';
+import LineChart from './lineChart/index.vue';
+import BarCharts from './barCharts/index.vue';
+import ProgressCharts from './progressCharts/index.vue';
 export default {
-    components: { Detail }
+    components: { Detail, LineChart, BarCharts, ProgressCharts }
 }
 </script>
 

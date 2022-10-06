@@ -33,7 +33,7 @@ export default {
         padding: 10px 0;
     }
     .card-chart {
-        height: 40px;
+        height: 50px;
     }
     .card-footer {
         border-top: 1px solid #eee;
