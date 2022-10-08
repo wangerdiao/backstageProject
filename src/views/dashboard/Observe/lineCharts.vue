@@ -63,7 +63,7 @@ export default {
 .header {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .search-header {
     margin-right: 20px;
@@ -76,9 +76,9 @@ export default {
 }
 .charts {
     width: 100%;
-    height: 50px;
+    height: 30px;
 }
 .footer {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 </style>
